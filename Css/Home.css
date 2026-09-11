@@ -1,20 +1,13 @@
-/* =========================================================
-   1. FUENTES
-   ========================================================= */
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap");
-
-/* =========================================================
-   2. VARIABLES DE COLOR
-   ========================================================= */
 :root {
-  --bg: #2e0118;
-  --bg-panel: #340125;
-  --bg-panel-2: #2d011e;
+  --bg: #70c3ce;
+  --bg-panel: #eee985;
+  --bg-panel-2: #ea18c7c9;
   --border: #3a352b;
-  --text: #f2e9d8;
-  --text-muted: #b9ae9a;
-  --gold: #d9b872;
-  --terracota: #b5623c;
+  --text: #282012;
+  --text-muted: #2c0639;
+  --gold: #baa45b;
+  --terracota: #340778;
 
   --font-display: "Caveat", cursive;
   --font-body: "Space Mono", monospace;
@@ -22,9 +15,6 @@
   --max-width: 1080px;
 }
 
-/* =========================================================
-   3. RESET BÁSICO
-   ========================================================= */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -34,18 +24,18 @@
 html {
   scroll-behavior: smooth;
 }
-/*Manchas de luz que hay en la página */
+
 body {
   background-color: var(--bg);
   background-image:
     radial-gradient(
       ellipse 700px 500px at 10% -10%,
-      rgba(217, 184, 114, 0.1),
+      rgba(221, 166, 46, 0.5),
       transparent 65%
     ),
     radial-gradient(
       ellipse 600px 500px at 95% 25%,
-      rgba(60, 177, 181, 0.08),
+      rgba(223, 11, 202, 0.5),
       transparent 70%
     );
   background-attachment: fixed;
@@ -53,10 +43,11 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   font-size: 16px;
+  min-height: 100vh;
 }
 /* Encabezado de enlaces */
 a {
-  color: aqua;
+  color: rgb(7, 113, 90);
   text-decoration: none;
 }
 
@@ -130,9 +121,7 @@ img {
   transform: scaleX(1);
 }
 
-/* =========================================================
-   5. HERO — CSS GRID
-   ========================================================= */
+/* CSS GRID principal */
 .principal {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -146,9 +135,7 @@ img {
   font-weight: 700;
   font-size: 3rem;
   line-height: 1.15;
-  color: var(
-    --gold
-  ); /* color de respaldo si el navegador no soporta el degradado de abajo */
+  color: var(--gold);
   margin-bottom: 20px;
 }
 
@@ -172,9 +159,7 @@ img {
   border-radius: 12px;
 }
 
-/* =========================================================
-   6. SECCIÓN "DOS MUNDOS" — CSS GRID (2 columnas)
-   ========================================================= */
+/* (2 columnas) */
 .section {
   padding-block: 40px;
   border-top: 1px solid var(--border);
@@ -203,7 +188,7 @@ img {
   border-radius: 10px;
   padding: 28px;
   background: var(--bg-panel);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 24px rgba(149, 3, 113, 0.76);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,

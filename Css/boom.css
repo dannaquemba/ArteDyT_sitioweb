@@ -1,11 +1,5 @@
-/* =========================================================
-   1. FUENTES
-   ========================================================= */
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap");
 
-/* =========================================================
-   2. VARIABLES DE COLOR
-   ========================================================= */
 :root {
   --bg: #fbedcb;
   --bg-panel: #76bbe6;
@@ -22,9 +16,7 @@
   --max-width: 1080px;
 }
 
-/* =========================================================
-   3. RESET BÁSICO
-   ========================================================= */
+/* Reset básico */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -40,19 +32,21 @@ body {
   background-image:
     radial-gradient(
       ellipse 700px 500px at 10% -10%,
-      rgba(240, 208, 138, 0.1),
-      transparent 100%
+      rgba(109, 221, 249, 0.941),
+      transparent 65%
     ),
     radial-gradient(
       ellipse 600px 500px at 95% 25%,
-      rgba(241, 157, 119, 0.08),
-      transparent 100%
+      rgba(223, 11, 202, 0.605),
+      transparent 70%
     );
   background-attachment: fixed;
+
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.6;
   font-size: 16px;
+  min-height: 100vh;
 
   background-image:
     url("../Resources/mancha1.png"), url("../Resources/macha2.png");
@@ -82,15 +76,13 @@ img {
   display: block;
 }
 
-.container {
+.contenedor {
   max-width: var(--max-width);
   margin-inline: auto;
   padding-inline: 24px;
 }
 
-/* =========================================================
-   4. ENCABEZADO / NAV — FLEXBOX
-   ========================================================= */
+/* Flexbox encabezdo */
 .site-header {
   border-bottom: 1px solid var(--border);
 }
@@ -103,8 +95,8 @@ img {
 }
 
 .logo img {
-  height: 100px; /* ajusta el alto a tu gusto */
-  width: auto; /* mantiene la proporción original, sin deformar */
+  height: 100px;
+  width: auto;
 }
 
 .logo span {
@@ -147,10 +139,8 @@ img {
   transform: scaleX(1);
 }
 
-/* =========================================================
-   5. HERO CENTRADO — FLEXBOX en columna
-   ========================================================= */
-.hero-centered {
+/* Flex columna */
+.logo-centrado {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -158,20 +148,18 @@ img {
   padding-block: 64px 40px;
   gap: 14px;
 }
-.hero-centered img {
-  width: 250px; /* Elige el ancho que quieras para achicarla */
-  height: auto; /* Evita que la foto se deforme o se estire */
-  object-fit: contain; /* Asegura que mantenga su proporción original */
+.logo-centrado img {
+  width: 250px;
+  height: auto;
+  object-fit: contain;
 }
-.hero-centered .tagline {
+.logo-centrado .tagline {
   font-size: 0.8rem;
   letter-spacing: 3px;
   color: var(--text-muted);
 }
 
-/* =========================================================
-   6. SECCIONES Y TÍTULOS
-   ========================================================= */
+/* Titulos*/
 .section {
   padding-block: 40px;
   border-top: 1px solid var(--border);
@@ -196,9 +184,7 @@ img {
   background: var(--border);
 }
 
-/* =========================================================
-   7. GRID DE 4 COLUMNAS — CSS GRID
-   ========================================================= */
+/*CSS grid*/
 .grid-4 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -281,14 +267,11 @@ img {
   transition: transform 0.3s ease;
 }
 
-/* Si ya pusiste una foto real, se acerca un poco al pasar el mouse. */
 .gallery-item:hover img {
   transform: scale(1.06);
 }
 
-/* =========================================================
-   8. CTA Y FOOTER — FLEXBOX
-   ========================================================= */
+/*Footer */
 .cta-line {
   display: flex;
   align-items: center;
@@ -333,39 +316,39 @@ img {
 @keyframes recorrer {
   0% {
     top: 10%;
-    left: -150px; /* Empieza escondida a la izquierda */
+    left: -150px;
     transform: rotate(0deg);
   }
   25% {
     top: 20%;
-    left: 80%; /* Se mueve a la derecha, cerca del menú */
+    left: 80%;
     transform: rotate(90deg);
   }
   50% {
     top: 70%;
-    left: 10%; /* Baja hacia la izquierda, cerca de las primeras tarjetas */
+    left: 10%;
     transform: rotate(180deg);
   }
   75% {
     top: 85%;
-    left: 75%; /* Se va a la esquina inferior derecha */
+    left: 75%;
     transform: rotate(270deg);
   }
   100% {
     top: 10%;
-    left: -150px; /* Regresa al punto de inicio para reiniciar el ciclo */
+    left: -150px;
     transform: rotate(360deg);
   }
 }
 
-.contenedor-catalogo {
+.contenedo-catalogo {
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  padding-block: 40px; /* Espacio arriba y abajo del botón */
+  justify-content: center;
+  padding-block: 40px;
 }
 
 .btn-catalogo {
-  background-color: var(--terracota); /* Usa tus colores existentes */
+  background-color: var(--terracota);
   color: #fbfbfa;
   font-family: var(--font-body);
   font-size: 0.9rem;
@@ -379,7 +362,6 @@ img {
     box-shadow 0.2s ease;
 }
 
-/* Efecto divertido al pasar el mouse por encima */
 .btn-catalogo:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(17, 253, 253, 0.925);
