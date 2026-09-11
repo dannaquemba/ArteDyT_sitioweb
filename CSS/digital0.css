@@ -1,6 +1,3 @@
-/* =========================================================
-   digital0.css — Página "Arte digital"
-   ========================================= */
 
 :root {
   --bg: #FF4C69;
@@ -268,9 +265,7 @@ button:focus-visible {
   line-height: 1.4;
 }
 
-/* ==========================================
-   CONFIGURACIONES ESPECIALES DE GALERÍAS
-   ========================================== */
+/* CONFIGURACIONES ESPECIALES DE GALERÍAS */
 
 /* --- 1. Ilustraciones --- */
 .galeria-mosaico {
