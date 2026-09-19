@@ -9,12 +9,12 @@
   <body>
     <header class="encabezado">
       <nav class="nav container">
-        <a href="home.html" class="logo"><span>Arte digital/handmade</span></a>
+        <a href="Home.html" class="logo"><span>Arte digital/handmade</span></a>
         <ul class="nav-links">
-          <li><a href="home.html">Inicio</a></li>
+          <li><a href="Home.html">Inicio</a></li>
           <li><a href="boom.html">Boombardearte</a></li>
-          <li><a href="">Arte digital</a></li>
-          <li><a href="">Contacto</a></li>
+          <li><a href="digital0.html">02</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
     </header>
@@ -22,7 +22,9 @@
     <main class="container">
       <section class="principal">
         <div class="texto-principal">
-          <h1>El arte también se vive en lo digital y en lo artesanal</h1>
+          <h1 id="titulo-principal">
+            El arte también se vive en lo digital y en lo artesanal
+          </h1>
           <p>
             El arte digital y el hecho a mano son dos formas de expresión que,
             aunque distintas, comparten la misma esencia: la creatividad, la
@@ -36,24 +38,31 @@
         </div>
       </section>
 
+      <!-- id="galeria-informativa" -->
       <section class="section">
         <p class="titulo2">DOS MUNDOS, UNA MISMA PASIÓN. TENEMOS:</p>
-        <div class="grid">
+        <div class="grid" id="galeria-informativa">
           <article class="informacion-extra">
             <div class="icon">◧</div>
             <h3>Arte digital</h3>
             <p>por Tatiana Carolina Cano</p>
+            <p class="descripcion-extra">
+              Ilustraciones digitales que mezclan color, textura y narrativa.
+            </p>
           </article>
-          <article class="informacion-extra">
+          <a href="poesia.html" class="informacion-extra">
             <div class="icon">🖌️</div>
             <h3>Arte y pinturas</h3>
             <p>por Danna Nicolle Quemba</p>
-          </article>
+            <p class="descripcion-extra">
+              Piezas pintadas a mano, con detalle y calma en cada trazo. Si
+              quieres saber mas sobre mi, HAZ CLICK!!!
+            </p>
+          </a>
         </div>
       </section>
     </main>
-
-    <footer class="site-footer">
+    <footer class="site-footer" id="pie-de-pagina">
       <p class="footer-bar">CREA ✦ EXPRESA ✦ INSPIRA</p>
     </footer>
   </body>

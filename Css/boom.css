@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Space+Mono:wght@400;700&display=swap");
-
 :root {
   --bg: #fbedcb;
   --bg-panel: #76bbe6;
@@ -27,6 +26,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/*Transición entre páginas
+*/
+@view-transition {
+  navigation: auto;
+}
+
 body {
   background-color: var(--bg);
   background-image:
@@ -42,12 +47,6 @@ body {
     );
   background-attachment: fixed;
 
-  color: var(--text);
-  font-family: var(--font-body);
-  line-height: 1.6;
-  font-size: 16px;
-  min-height: 100vh;
-
   background-image:
     url("../Resources/mancha1.png"), url("../Resources/macha2.png");
   background-repeat: no-repeat, no-repeat;
@@ -57,17 +56,30 @@ body {
   background-size:
     500px auto,
     600px auto;
-
   background-attachment: scroll;
 
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.6;
   font-size: 16px;
+  min-height: 100vh;
+
+  /* Respaldo de la transición */
+  animation: aparecer 0.6s ease-in;
 }
 
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/*Selectores tagname */
 a {
-  color: inherit;
+  color: rgb(7, 113, 90);
   text-decoration: none;
 }
 
@@ -76,13 +88,17 @@ img {
   display: block;
 }
 
+h3 {
+  font-family: var(--font-display);
+}
+
 .contenedor {
   max-width: var(--max-width);
   margin-inline: auto;
   padding-inline: 24px;
 }
 
-/* Flexbox encabezdo */
+/* ENCABEZADO (Flexbox)*/
 .site-header {
   border-bottom: 1px solid var(--border);
 }
@@ -118,6 +134,7 @@ img {
   transition: color 0.2s ease;
 }
 
+/* Pseudoelemento ::after #1 — línea que crece al pasar el mouse */
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -139,7 +156,20 @@ img {
   transform: scaleX(1);
 }
 
-/* Flex columna */
+/* Selectores de combinación */
+header nav a {
+  font-weight: 700;
+}
+/* clase + clase + etiqueta */
+.grid-4 .offer-card h3 {
+  letter-spacing: 0.5px;
+}
+/* etiqueta + clase + etiqueta */
+main .section p {
+  max-width: 60ch;
+}
+
+/* Logo y eslogan*/
 .logo-centrado {
   display: flex;
   flex-direction: column;
@@ -148,18 +178,47 @@ img {
   padding-block: 64px 40px;
   gap: 14px;
 }
+
 .logo-centrado img {
   width: 250px;
   height: auto;
   object-fit: contain;
 }
-.logo-centrado .tagline {
-  font-size: 0.8rem;
-  letter-spacing: 3px;
-  color: var(--text-muted);
+
+/* Selector por id #1 — el logo central, ahora más grande y con sombra */
+#logo-principal {
+  width: clamp(220px, 30vw, 320px);
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.25));
 }
 
-/* Titulos*/
+.logo-centrado .tagline {
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* Pseudoelemento ::first-letter — realza la primera letra del eslogan */
+.tagline::first-letter {
+  font-size: 1.8em;
+  color: var(--terracota);
+  font-family: var(--font-display);
+}
+
+.esencia-texto {
+  max-width: 60ch;
+  margin-inline: auto;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Selector por ID #2 — sección de galería */
+#galeria {
+  padding-block: 60px 20px;
+}
+
+/* Titulos */
 .section {
   padding-block: 40px;
   border-top: 1px solid var(--border);
@@ -176,6 +235,7 @@ img {
   margin-bottom: 32px;
 }
 
+/* Pseudoelemento ::before / ::after #2 — líneas a los lados del título */
 .section-title::before,
 .section-title::after {
   content: "";
@@ -184,7 +244,7 @@ img {
   background: var(--border);
 }
 
-/*CSS grid*/
+/* Css Grid */
 .grid-4 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -203,6 +263,7 @@ img {
     box-shadow 0.2s ease,
     border-color 0.2s ease;
 }
+
 .card-pinturas {
   background-color: #ffadad;
 }
@@ -215,11 +276,6 @@ img {
 .card-pinta {
   background-color: #e8aeff;
 }
-.offer-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(190, 44, 44, 0.55);
-  border-color: var(--terracota);
-}
 
 .offer-card .icon {
   font-size: 1.8rem;
@@ -228,7 +284,6 @@ img {
 }
 
 .offer-card h3 {
-  font-family: var(--font-display);
   font-size: 1.4rem;
   margin-bottom: 6px;
 }
@@ -238,7 +293,26 @@ img {
   color: var(--text-muted);
 }
 
+/* Combinador hijo directo
+*/
+.grid-4 > .offer-card:nth-child(odd) {
+  transform: rotate(-1.2deg);
+}
+.grid-4 > .offer-card:nth-child(even) {
+  transform: rotate(1.2deg);
+}
+
+/* Al pasar el mouse "endereza"
+   la tarjeta y la levanta un poco */
+.grid-4 > .offer-card:hover {
+  transform: translateY(-4px) rotate(0deg);
+  box-shadow: 0 16px 32px rgba(190, 44, 44, 0.55);
+  border-color: var(--terracota);
+}
+
+/*Galeria */
 .gallery-item {
+  position: relative; 
   aspect-ratio: 1 / 1;
   border: 1px dashed var(--border);
   border-radius: 10px;
@@ -255,6 +329,12 @@ img {
     border-color 0.2s ease;
 }
 
+/* Pseudoclase :first-child — la primera obra de la galería, destacada */
+.gallery-item:first-child {
+  border-color: var(--terracota);
+  border-width: 2px;
+}
+
 .gallery-item:hover {
   border-color: var(--gold);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
@@ -264,11 +344,39 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    filter 0.3s ease;
 }
 
 .gallery-item:hover img {
   transform: scale(1.06);
+}
+
+/* Combinador(gallery-caption)*/
+.gallery-item img + .gallery-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 8px;
+  background: rgba(0, 0, 0, 0.68);
+  color: #fff;
+  font-size: 0.72rem;
+  line-height: 1.3;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img + .gallery-caption {
+  transform: translateY(0);
+}
+
+/* COMBINADOR: Al pasar el mouse sobre una obra, las demás se apagan */
+.gallery-item:hover ~ .gallery-item img {
+  opacity: 0.55;
+  filter: grayscale(35%);
 }
 
 /*Footer */
@@ -305,7 +413,7 @@ img {
   color: var(--text-muted);
 }
 
-/* Animación paleta de colores */
+/*Animación */
 .mancha-animada {
   position: fixed;
   width: 120px;
@@ -313,6 +421,7 @@ img {
   opacity: 0.9;
   animation: recorrer 25s ease-in-out infinite;
 }
+
 @keyframes recorrer {
   0% {
     top: 10%;
@@ -341,10 +450,22 @@ img {
   }
 }
 
-.contenedo-catalogo {
+/*Catalogo*/
+#catalogo {
   display: flex;
-  justify-content: center;
-  padding-block: 40px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-block: 50px;
+}
+
+.catalogo-embed {
+  width: 100%;
+  max-width: 700px;
+  height: 460px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(74, 8, 244, 0.35);
 }
 
 .btn-catalogo {

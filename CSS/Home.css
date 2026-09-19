@@ -25,6 +25,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Transiciones en páginas*/
+@view-transition {
+  navigation: auto;
+}
+
 body {
   background-color: var(--bg);
   background-image:
@@ -45,7 +50,17 @@ body {
   font-size: 16px;
   min-height: 100vh;
 }
-/* Encabezado de enlaces */
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Selectores tagname*/
 a {
   color: rgb(7, 113, 90);
   text-decoration: none;
@@ -56,12 +71,17 @@ img {
   display: block;
 }
 
+h3 {
+  font-family: var(--font-display);
+}
+
 .container {
   max-width: var(--max-width);
   margin-inline: auto;
   padding-inline: 24px;
 }
-/* Encabezadoo */
+
+/*Encabezado (Flex)*/
 .encabezado {
   border-bottom: 1px solid var(--border);
 }
@@ -98,8 +118,7 @@ img {
   transition: color 0.2s ease;
 }
 
-/* Subrayado que crece de izquierda a derecha al pasar el mouse,
-   en vez de solo cambiar de color. */
+/* Pseudoelemento ::after — subrayado que crece al pasar el mouse */
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -121,29 +140,39 @@ img {
   transform: scaleX(1);
 }
 
-/* CSS GRID principal */
+/* Selectores de combinación */
+header nav a {
+  font-weight: 700;
+}
+/* clase + clase + etiqueta */
+.grid .informacion-extra h3 {
+  letter-spacing: 0.3px;
+}
+/* clase + clase + etiqueta */
+.principal .imagen-principal img {
+  filter: saturate(1.05);
+}
+
+/* Selector por ID — título principal */
+#titulo-principal {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  background: linear-gradient(100deg, var(--gold), var(--terracota));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/*CSS GRID principal*/
 .principal {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 48px;
   align-items: center;
   padding-block: 64px;
-}
-
-.principal h1 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 3rem;
-  line-height: 1.15;
-  color: var(--gold);
-  margin-bottom: 20px;
-}
-
-.principal h1 {
-  background: linear-gradient(100deg, var(--gold), var(--terracota));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 .principal p {
@@ -159,13 +188,14 @@ img {
   border-radius: 12px;
 }
 
-/* (2 columnas) */
+/* ============================================
+   SECCIÓN "DOS MUNDOS" (CSS Grid, 2 columnas)
+   ============================================ */
 .section {
   padding-block: 40px;
   border-top: 1px solid var(--border);
 }
 
-/* Título de sección con líneas a los lados */
 .titulo2 {
   display: flex;
   align-items: center;
@@ -177,13 +207,24 @@ img {
   margin-bottom: 32px;
 }
 
-.grid {
+/* Pseudoelemento ::before — líneas a los lados del título */
+.titulo2::before,
+.titulo2::after {
+  content: "";
+  height: 1px;
+  width: 48px;
+  background: var(--border);
+}
+
+/* Selector por ID #2 — el grid de las dos tarjetas informativas */
+#galeria-informativa {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
 
 .informacion-extra {
+  display: block;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 28px;
@@ -195,10 +236,47 @@ img {
     border-color 0.2s ease;
 }
 
+/* Solo la tarjeta de Danna es un <a>: le quitamos el estilo de
+   enlace por defecto y le damos cursor de "clicable" */
+a.informacion-extra {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* COMBINADOR DE HIJO DIRECTO (>) — requisito
+   Solo afecta a los .informacion-extra que son hijos directos de
+   #galeria-informativa, con un ligero giro "hecho a mano" alternado. */
+#galeria-informativa > .informacion-extra:nth-child(odd) {
+  transform: rotate(-1deg);
+}
+#galeria-informativa > .informacion-extra:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+/* Pseudoclase :first-child — la primera tarjeta llevan un acento extra */
+.informacion-extra:first-child {
+  border-left: 4px solid var(--terracota);
+}
+
+/* COMBINADOR DE HERMANO ADYACENTE (+) — requisito
+   Le da un pequeño espacio a la izquierda a la tarjeta que va
+   inmediatamente después de otra .informacion-extra */
+.informacion-extra + .informacion-extra {
+  margin-left: 4px;
+}
+
+/* COMBINADOR DE HERMANO GENERAL (~) — requisito
+   Al pasar el mouse por una tarjeta, la(s) demás se atenúan un poco. */
+.informacion-extra:hover ~ .informacion-extra {
+  opacity: 0.7;
+}
+
 .informacion-extra:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) rotate(0deg);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
   border-color: var(--gold);
+  opacity: 1;
 }
 
 .informacion-extra .icon {
@@ -208,7 +286,6 @@ img {
 }
 
 .informacion-extra h3 {
-  font-family: var(--font-display);
   font-size: 1.5rem;
   margin-bottom: 6px;
   color: var(--text);
@@ -219,8 +296,24 @@ img {
   font-size: 0.85rem;
 }
 
-/* FOOTER */
-.site-footer {
+.descripcion-extra {
+  margin-top: 8px;
+  font-size: 0.8rem;
+}
+
+/* Tarjeta de Danna lleva a otra página */
+.descripcion-extra::after {
+  content: " →";
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+a.informacion-extra:hover .descripcion-extra::after {
+  opacity: 1;
+}
+
+/* Footer: Selector por ID #3 — pie de página */
+#pie-de-pagina {
   border-top: 1px solid var(--border);
   padding-block: 24px;
 }
