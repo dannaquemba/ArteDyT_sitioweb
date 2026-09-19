@@ -254,14 +254,6 @@ a.informacion-extra {
   transform: rotate(1deg);
 }
 
-/* Pseudoclase :first-child — la primera tarjeta llevan un acento extra */
-.informacion-extra:first-child {
-  border-left: 4px solid var(--terracota);
-}
-
-/* COMBINADOR DE HERMANO ADYACENTE (+) — requisito
-   Le da un pequeño espacio a la izquierda a la tarjeta que va
-   inmediatamente después de otra .informacion-extra */
 .informacion-extra + .informacion-extra {
   margin-left: 4px;
 }
