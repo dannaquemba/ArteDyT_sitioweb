@@ -49,10 +49,10 @@ body {
 
   background-image:
     url("../Resources/mancha1.png"), url("../Resources/macha2.png");
-  background-repeat: no-repeat, no-repeat;
+  background-repeat: repeat-y, repeat-y;
   background-position:
-    left -60px bottom 700px,
-    right -80px bottom 150px;
+    left -60px top,
+    right -80px top;
   background-size:
     500px auto,
     600px auto;
@@ -312,7 +312,7 @@ main .section p {
 
 /*Galeria */
 .gallery-item {
-  position: relative; 
+  position: relative;
   aspect-ratio: 1 / 1;
   border: 1px dashed var(--border);
   border-radius: 10px;
